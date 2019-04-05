@@ -1,0 +1,82 @@
+version: '3'
+
+networks:
+    guki:
+
+services:
+    nginx:
+        image: nginx:stable
+        container_name: guki_nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./code:/code
+            - ./configs/vhosts/:/etc/nginx/conf.d/
+            # certificates
+            - ./configs/certs/cert.pem/:/etc/nginx/cert.pem:ro
+            - ./configs/certs/key.pem/:/etc/nginx/key.pem:ro
+        depends_on:
+            - php
+            - php-5.6
+        networks:
+            - guki
+
+    mysql:
+        image: mysql:5.7
+        container_name: guki_mysql
+        volumes:
+            - ${MYSQL_DATA_DIR}:/var/lib/mysql:rw
+            - ${MYSQL_LOG_DIR}:/var/log/mysql:rw
+        ports:
+            - "3306:3306"
+        depends_on:
+            - nginx
+        environment:
+            - MYSQL_ROOT_PASSWORD=Rkme#001
+            - MYSQL_DATABASE=rkme
+            - MYSQL_USER=rkme
+            - MYSQL_PASSWORD=Rkme#001         
+        networks:
+            - guki
+
+    php:
+        image: php:7.1-fpm
+        container_name: guki_php
+        volumes:
+            - ./code:/code
+        ports:
+            - "9000:9000"
+        networks:
+            - guki
+
+    php-5.6:
+        image: php:5.6-fpm
+        container_name: guki_php_5_6
+        volumes:
+            - ./code:/code
+        ports:
+            - "9090:9090"
+        networks:
+            - guki
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: guki_phpmyadmin
+        ports:
+            - "8080:80"
+        environment:        
+            PMA_ARBITRARY: 1
+        depends_on:
+            - mysql
+        networks:
+            - guki
+    redis:
+        image: redis:latest
+        container_name: guki_redis
+        ports:
+            - "6379:6379"
+    
+
+
+
