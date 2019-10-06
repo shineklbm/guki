@@ -2,3 +2,4 @@
 logs/*
 .env
 data/mysql/*
+config/certs/*

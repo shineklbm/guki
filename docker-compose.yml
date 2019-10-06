@@ -8,14 +8,13 @@ services:
         image: nginx:stable
         container_name: guki_nginx
         ports:
-            - "8000:80"
+            - "80:80"
             - "443:443"
         volumes:
             - ./code:/code
             - ./configs/vhosts/:/etc/nginx/conf.d/
             # certificates
-            - ./configs/certs/cert.pem/:/etc/nginx/cert.pem:ro
-            - ./configs/certs/key.pem/:/etc/nginx/key.pem:ro
+            - ./configs/certs/:/etc/nginx/certs/:ro
         depends_on:
             - php
             - php-5.6
