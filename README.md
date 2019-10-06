@@ -1,4 +1,4 @@
-# GUKI
+# GUKI - A simple PHP Docker development environment
 A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 
 ## Prerequisite
@@ -26,3 +26,5 @@ A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 
 ## Support
 If you are facing any issues, please feel free to reach me out in Skype (shine.sudarsanan) or Email (shine@richkenmedia.com)
+
+I am planning to create a dedicated website for this, will keep you posted!
