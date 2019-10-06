@@ -2,7 +2,7 @@
 A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 
 ## Features
-* Multiple PHP versions (5.6, 7.1)
+* Multiple PHP FPM versions (5.6, 7.1)
 * PHP Package Manager `Composer` Installed as an Image
 * Light Weight
 * No complex configurations
