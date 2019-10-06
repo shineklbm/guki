@@ -1,6 +1,13 @@
 # GUKI - A simple PHP Docker development environment
 A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 
+## Features
+* Multiple PHP FPM versions (5.6, 7.1)
+* PHP Package Manager `Composer` Installed as an Image
+* Light Weight
+* No complex configurations
+
+
 ## Prerequisite
 * Docker with Docker-Compose
 * NodeJS - To generate SSL certificates we are using a Node package.
