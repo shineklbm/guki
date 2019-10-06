@@ -12,7 +12,7 @@ A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 3. Type the following command `docker-compose up`.
 4. Done!
 
-## Create new projects.
+## How to create a new project?
 1. Create a directory inside `code` directory with your PROJECT_DIRECTORY_NAME. Please also create an `index.php` or `index.html` file inside it.
 2. Copy `sample.conf` from `configs/vhosts` directory.
 3. Replace all occurances of `sample` with the PROJECT_DIRECTORY_NAME you choose. (Not necessory, but for simplicity using the same folder name)
