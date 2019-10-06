@@ -40,7 +40,9 @@ services:
             - guki
 
     php:
-        image: php:7.1-fpm
+        # image: php:7.1-fpm
+        build: 
+            context: './builds/php7/'
         container_name: guki_php
         volumes:
             - ./code:/var/www/html
@@ -50,7 +52,9 @@ services:
             - guki
 
     php-5.6:
-        image: php:5.6-fpm
+        # image: php:5.6-fpm
+        build: 
+            context: './builds/php5/'
         container_name: guki_php_5_6
         volumes:
             - ./code:/var/www/html
@@ -75,7 +79,6 @@ services:
         container_name: guki_redis
         ports:
             - "6379:6379"
-    
 
 
 
