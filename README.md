@@ -16,8 +16,9 @@ A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 ## Installation
 1. Clone the Repo
 2. Using terminal navigate inside to the directory `guki`.
-3. Type the following command `docker-compose up`.
-4. Done!
+3. Copy `example.env` to `.env` and make all required changes.
+4. Type the following command `docker-compose up`.
+5. Done!
 
 ## How to create a new project?
 1. Create a directory inside `code` directory with your PROJECT_DIRECTORY_NAME. Please also create an `index.php` or `index.html` file inside it.
