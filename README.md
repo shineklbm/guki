@@ -32,6 +32,10 @@ A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 9. Once everything done, goto https://PROJECT_DIRECTORY_NAME.YOUR_DOMAIN_EXTENSTION in Google Chrome.
 10. Done!
 
+## FAQ
+*  What is the default credentials for PHPMyAdmin?
+   You may please use `root` as the username and password. Please don't forget to use `mysql` as the host name.
+
 ## Support
 If you are facing any issues, please feel free to reach me out in Skype (shine.sudarsanan) or Email (shine@richkenmedia.com)
 
