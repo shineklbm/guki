@@ -34,7 +34,7 @@ A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 
 ## FAQ
 *  What is the default credentials for PHPMyAdmin?
-   You may please use `root` as the username and password. Please don't forget to use `mysql` as the host name.
+You may please use `root` as the username and password. Please don't forget to use `mysql` as the host name.
 
 ## Support
 If you are facing any issues, please feel free to reach me out in Skype (shine.sudarsanan) or Email (shine@richkenmedia.com)
