@@ -3,3 +3,6 @@ logs/*
 .env
 data/mysql/
 config/certs/
+code/
+!code/default
+!code/sample
