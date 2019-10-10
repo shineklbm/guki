@@ -43,7 +43,7 @@ services:
     php7_2:
         build: 
             context: './builds/php7_2/'
-        container_name: guki_php
+        container_name: guki_php7_2
         volumes:
             - ./code:/var/www/html
         ports:
