@@ -17,7 +17,7 @@ services:
             - ./configs/certs/:/etc/nginx/certs/:ro
         depends_on:
             - php7_2
-            - php7_1
+            # - php7_1
             - php5_6
         networks:
             - guki
@@ -51,16 +51,16 @@ services:
         networks:
             - guki
 
-    php7_1:
-        build: 
-            context: './builds/php7_1/'
-        container_name: guki_php7_1
-        volumes:
-            - ./code:/var/www/html
-        ports:
-            - "9001:9001"
-        networks:
-            - guki
+    # php7_1:
+    #     build: 
+    #         context: './builds/php7_1/'
+    #     container_name: guki_php7_1
+    #     volumes:
+    #         - ./code:/var/www/html
+    #     ports:
+    #         - "9001:9001"
+    #     networks:
+    #         - guki
 
     php5_6:
         build: 

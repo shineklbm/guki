@@ -18,6 +18,8 @@ RUN set -xe; \
     libssl-dev \
     libpng-dev \
     libjpeg-dev \
+    libgmp-dev \
+    libxml2-dev \
     libfreetype6-dev \
     apt-utils \
     zlib1g-dev \
@@ -33,7 +35,7 @@ RUN set -xe; \
     docker-php-ext-install xml && \
     docker-php-ext-install mysqli && \
     docker-php-ext-install pdo && \
-    docker-php-ext-install pdomysql && \
+    docker-php-ext-install pdo_mysql && \
     docker-php-ext-install ctype && \
     docker-php-ext-install json && \
     docker-php-ext-install tokenizer && \
