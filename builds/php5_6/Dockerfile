@@ -14,8 +14,16 @@ RUN set -xe; \
     pecl channel-update pecl.php.net && \
     apt-get install -yqq \
     git \
+    curl \
+    libssl-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
     apt-utils \
+    zlib1g-dev \
     libzip-dev zip unzip && \
     docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install zip && \
+    docker-php-ext-install gd && \
+    docker-php-ext-install mysqli && \
     php -m | grep -q 'zip'
