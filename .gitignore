@@ -1,5 +1,5 @@
 .DS_Store
 logs/*
 .env
-data/mysql/*
-config/certs/*
+data/mysql/
+config/certs/

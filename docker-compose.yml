@@ -16,8 +16,9 @@ services:
             # certificates
             - ./configs/certs/:/etc/nginx/certs/:ro
         depends_on:
-            - php
-            - php-5.6
+            - php7_2
+            - php7_1
+            - php5_6
         networks:
             - guki
 
@@ -28,7 +29,7 @@ services:
             - ${MYSQL_DATA_DIR}:/var/lib/mysql:rw
             - ${MYSQL_LOG_DIR}:/var/log/mysql:rw
         ports:
-            - "3306:3306"
+            - "3307:3306"
         depends_on:
             - nginx
         environment:
@@ -39,10 +40,9 @@ services:
         networks:
             - guki
 
-    php:
-        # image: php:7.1-fpm
+    php7_2:
         build: 
-            context: './builds/php7/'
+            context: './builds/php7_2/'
         container_name: guki_php
         volumes:
             - ./code:/var/www/html
@@ -51,15 +51,25 @@ services:
         networks:
             - guki
 
-    php-5.6:
-        # image: php:5.6-fpm
+    php7_1:
         build: 
-            context: './builds/php5/'
-        container_name: guki_php_5_6
+            context: './builds/php7_1/'
+        container_name: guki_php7_1
         volumes:
             - ./code:/var/www/html
         ports:
-            - "9090:9090"
+            - "9001:9001"
+        networks:
+            - guki
+
+    php5_6:
+        build: 
+            context: './builds/php5_6/'
+        container_name: guki_php5_6
+        volumes:
+            - ./code:/var/www/html
+        ports:
+            - "9002:9002"
         networks:
             - guki
 
