@@ -15,9 +15,10 @@ A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 
 ## Installation
 1. Clone the Repo
-2. Using terminal navigate inside to the directory `guki`.
-3. Type the following command `docker-compose up`.
-4. Done!
+2. Using terminal navigate to the directory `guki`.
+3. Copy `sample.env` to `.env` and make all required changes.
+4. Type the following command `docker-compose up`.
+5. Done!
 
 ## How to create a new project?
 1. Create a directory inside `code` directory with your PROJECT_DIRECTORY_NAME. Please also create an `index.php` or `index.html` file inside it.
@@ -30,6 +31,10 @@ A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 8. Add your newly created local domain to your `etc/hosts` file. Now run `docker-compose up`.
 9. Once everything done, goto https://PROJECT_DIRECTORY_NAME.YOUR_DOMAIN_EXTENSTION in Google Chrome.
 10. Done!
+
+## FAQ
+*  What is the default credentials for PHPMyAdmin?
+You may please use `root` as the username and password. Please don't forget to use `mysql` as the host name.
 
 ## Support
 If you are facing any issues, please feel free to reach me out in Skype (shine.sudarsanan) or Email (shine@richkenmedia.com)
