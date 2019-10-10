@@ -25,5 +25,9 @@ RUN set -xe; \
     docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install zip && \
     docker-php-ext-install gd && \
+    docker-php-ext-install mbstring && \
+    docker-php-ext-install xmlrpc && \
+    docker-php-ext-install soap && \
+    docker-php-ext-install xml && \
     docker-php-ext-install mysqli && \
     php -m | grep -q 'zip'
