@@ -51,6 +51,7 @@ services:
         networks:
             - guki
 
+    # PLEASE UNCOMMENT THE FOLLOWING LINES TO ADD 7.1 SUPPORT
     # php7_1:
     #     build: 
     #         context: './builds/php7_1/'
