@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Home - GUKI</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> GUKI</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#guki-a-simple-php-docker-development-environment">GUKI - A simple PHP Docker development environment</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#features">Features</a></li>
+        
+            <li><a class="toctree-l3" href="#prerequisite">Prerequisite</a></li>
+        
+            <li><a class="toctree-l3" href="#installation">Installation</a></li>
+        
+            <li><a class="toctree-l3" href="#how-to-create-a-new-project">How to create a new project?</a></li>
+        
+            <li><a class="toctree-l3" href="#faq">FAQ</a></li>
+        
+            <li><a class="toctree-l3" href="#support">Support</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">GUKI</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <blockquote>
+<p><img alt="" src="img/guki.png" /></p>
+</blockquote>
+<h1 id="guki-a-simple-php-docker-development-environment">GUKI - A simple PHP Docker development environment</h1>
+<p>A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Multiple PHP FPM versions (5.6, 7.2)</li>
+<li>PHP Package Manager <code>Composer</code> Installed as a docker container</li>
+<li>Light Weight</li>
+<li>No complex configurations</li>
+</ul>
+<h2 id="prerequisite">Prerequisite</h2>
+<ul>
+<li>Docker with Docker-Compose</li>
+<li>NodeJS - To generate SSL certificates we are using a Node package.</li>
+<li>A CLI Tool - preferably bash</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are a Mac user, you may please download and install <a href="https://brew.sh/"><code>Homebrew</code></a>, this will make your life lot easier!</p>
+</div>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Clone the Repo</li>
+<li>Using terminal navigate to the directory <code>guki</code>.</li>
+<li>Copy <code>sample.env</code> to <code>.env</code> and make any required changes.</li>
+<li>Type the following command <code>docker-compose up</code>.</li>
+<li>Done!</li>
+</ol>
+<h2 id="how-to-create-a-new-project">How to create a new project?</h2>
+<ul>
+<li>Create a directory inside <code>code</code> with <code>YOUR_PROJECT_NAME</code>. Now, create a file inside that directory with the following content.</li>
+</ul>
+<pre><code class="php">&lt;?php
+    phpinfo();
+?&gt;
+</code></pre>
+
+<ul>
+<li>Copy <code>sample.conf</code> from <code>configs/vhosts</code> directory and paste it .</li>
+<li>Replace all occurances of <code>sample</code> with the PROJECT_NAME you choose. (Not necessory, but for simplicity using the same folder name)</li>
+<li>Install <code>Create SSL Certificate Plugin</code> for NPM using <code>npm i -g create-ssl-certificate</code></li>
+<li>Using <code>terminal</code> goto <code>configs/certs</code> directory, then type </li>
+</ul>
+<pre><code class="shell">npx create-ssl-certificate --hostname PROJECT_NAME --domain YOUR_DOMAIN_EXTENSTION
+</code></pre>
+
+<ul>
+<li>Please rename the generated files to <code>PROJECT_NAME</code>(This also you can customize)</li>
+<li>Install generated <code>.cert</code> file to your machine (Mac and Linux uses different steps for the same, please google it)</li>
+<li>Add your newly created local domain to your <code>etc/hosts</code> file. Now run <code>docker-compose up</code>.</li>
+<li>Once everything done, goto https://PROJECT_NAME.YOUR_DOMAIN_EXTENSTION in Google Chrome.</li>
+<li>Done!</li>
+</ul>
+<h2 id="faq">FAQ</h2>
+<ul>
+<li>What is the default credentials for PHPMyAdmin? </li>
+</ul>
+<blockquote>
+<p>You may please use <code>root</code> as the username and password. Please don't forget to use <code>mysql</code> as the host name.</p>
+</blockquote>
+<ul>
+<li>How can I login to a running docker container? </li>
+</ul>
+<blockquote>
+<p>Please use the <strong>docker-compose exec YOUR_CONTAINER_NAME bash</strong> command like the one bellow.</p>
+</blockquote>
+<pre><code>docker-compose exec nginx bash
+</code></pre>
+
+<ul>
+<li>How can I connect to mysql running in docker from host machine? </li>
+</ul>
+<blockquote>
+<p>Please use the following details to connect docker mysql from host machine.</p>
+</blockquote>
+<pre><code>Host Name : 127.0.0.1
+
+Username : rkme
+
+Password : Rkme#001
+
+Port : 3307
+</code></pre>
+
+<h2 id="support">Support</h2>
+<p>If you are facing any issues, please feel free to reach me out in Skype (<code>shine.sudarsanan</code>) or <a href="mailto:shine@richkenmedia.com">Email Me</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2019-10-16 10:30:02
+-->

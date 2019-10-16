@@ -1,0 +1,8 @@
+site_name: GUKI
+theme: readthedocs
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - def_list
+  - pymdownx.emoji
