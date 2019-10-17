@@ -90,6 +90,21 @@ services:
         container_name: guki_redis
         ports:
             - "6379:6379"
+        networks:
+            - guki
 
+    # elasticsearch:
+    #     image: elasticsearch:7.4.0
+    #     container_name: guki_elasticsearch
+    #     environment:
+    #         ES_JAVA_OPTS: '-Xms512m -Xmx512m'
+    #         network.bind_host: 0.0.0.0
+    #         network.host: 0.0.0.0
+    #         discovery.type: single-node
+    #     volumes:
+    #         - ${ELASTICSEARCH_DATA_DIR}:/usr/share/elasticsearch/data:rw
+    #     ports:
+    #         - "9200:9200"
+    #         - "9300:9300"
 
 
