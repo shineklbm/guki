@@ -6,3 +6,4 @@ config/certs/
 code/
 !code/default
 !code/sample
+!code/laravel
