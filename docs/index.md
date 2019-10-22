@@ -1,4 +1,4 @@
-<center>![alt text](/img/guki.png "Guki Logo")</center>
+<center>![alt text](img/guki.png "Guki Logo")</center>
 # GUKI - A simple PHP Docker development environment
 A really simple docker setup with Nginx, PHP-FPM, MySQL and Redis
 
