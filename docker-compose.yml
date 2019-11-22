@@ -51,18 +51,6 @@ services:
         networks:
             - guki
 
-    # PLEASE UNCOMMENT THE FOLLOWING LINES TO ADD 7.1 SUPPORT
-    # php7_1:
-    #     build: 
-    #         context: './builds/php7_1/'
-    #     container_name: guki_php7_1
-    #     volumes:
-    #         - ./code:/var/www/html
-    #     ports:
-    #         - "9001:9001"
-    #     networks:
-    #         - guki
-
     php5_6:
         build: 
             context: './builds/php5_6/'
@@ -85,11 +73,14 @@ services:
             - mysql
         networks:
             - guki
+            
     redis:
         image: redis:latest
         container_name: guki_redis
         ports:
             - "6379:6379"
+        networks:
+            - guki
 
     elasticsearch:
         image: elasticsearch:7.4.0
@@ -104,3 +95,19 @@ services:
         ports:
             - "9200:9200"
             - "9300:9300"
+        networks:
+            - guki
+
+    kibana:
+        image: kibana:7.4.0
+        container_name: guki_kibana
+        ports:
+            - "5601:5601"
+        networks:
+            - guki
+
+    logstash:
+        image: logstash:7.4.0
+        container_name: guki_logstash
+        networks:
+            - guki
