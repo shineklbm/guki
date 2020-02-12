@@ -38,5 +38,6 @@ RUN set -xe; \
     docker-php-ext-install pdo_mysql && \
     docker-php-ext-install ctype && \
     docker-php-ext-install json && \
+    docker-php-ext-install opcache && \
     docker-php-ext-install tokenizer && \
     php -m | grep -q 'zip'
