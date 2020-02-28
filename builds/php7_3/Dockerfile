@@ -1,10 +1,12 @@
 FROM composer:1.8 AS composer
 
 # installing php7.1.x
-FROM php:7.3-fpm
+FROM php:7.2-fpm
 
 # copy the compose file to php
 COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+COPY php.ini "$PHP_INI_DIR/php.ini"
 
 # just to verify
 RUN composer --version && php -v

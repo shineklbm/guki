@@ -16,9 +16,10 @@ services:
             # certificates
             - ./configs/certs/:/etc/nginx/certs/:ro
         depends_on:
-            - php7_2
+            - php7_3
+            # - php7_2
             # - php7_1
-            - php5_6
+            # - php5_6
         networks:
             - guki
 
@@ -40,10 +41,10 @@ services:
         networks:
             - guki
 
-    php7_2:
+    php7_3:
         build: 
-            context: './builds/php7_2/'
-        container_name: guki_php7_2
+            context: './builds/php7_3/'
+        container_name: guki_php7_3
         volumes:
             - ./code:/var/www/html
         ports:
@@ -51,16 +52,27 @@ services:
         networks:
             - guki
 
-    php5_6:
-        build: 
-            context: './builds/php5_6/'
-        container_name: guki_php5_6
-        volumes:
-            - ./code:/var/www/html
-        ports:
-            - "9002:9002"
-        networks:
-            - guki
+    # php7_2:
+    #     build: 
+    #         context: './builds/php7_2/'
+    #     container_name: guki_php7_2
+    #     volumes:
+    #         - ./code:/var/www/html
+    #     ports:
+    #         - "9001:9001"
+    #     networks:
+    #         - guki
+
+    # php5_6:
+    #     build: 
+    #         context: './builds/php5_6/'
+    #     container_name: guki_php5_6
+    #     volumes:
+    #         - ./code:/var/www/html
+    #     ports:
+    #         - "9002:9002"
+    #     networks:
+    #         - guki
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -98,16 +110,16 @@ services:
         networks:
             - guki
 
-    kibana:
-        image: kibana:7.4.0
-        container_name: guki_kibana
-        ports:
-            - "5601:5601"
-        networks:
-            - guki
+    # kibana:
+    #     image: kibana:7.4.0
+    #     container_name: guki_kibana
+    #     ports:
+    #         - "5601:5601"
+    #     networks:
+    #         - guki
 
-    logstash:
-        image: logstash:7.4.0
-        container_name: guki_logstash
-        networks:
-            - guki
+    # logstash:
+    #     image: logstash:7.4.0
+    #     container_name: guki_logstash
+    #     networks:
+    #         - guki

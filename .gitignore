@@ -2,7 +2,7 @@
 logs/*
 .env
 data/mysql/
-data/elasticsearch/
+data/elastic/
 config/certs/
 code/
 !code/default
