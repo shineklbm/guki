@@ -4,22 +4,22 @@ networks:
     guki:
 
 services:
-    nginx:
-        image: nginx:stable
-        container_name: guki_nginx
+    apache:
+        image: bitnami/apache:latest
+        container_name: guki_apache
         ports:
             - "80:80"
             - "443:443"
         volumes:
             - ./code:/var/www/html/
-            - ./configs/vhosts/:/etc/nginx/conf.d/
+            - ./configs/vhosts/:/etc/apache2/sites-enabled/
+            - ./logs/apache2/:/var/log/apache2
             # certificates
-            - ./configs/certs/:/etc/nginx/certs/:ro
+            - ./configs/certs/:/etc/apache2/certs/:ro
         depends_on:
             - php7_3
+            # you may add more version here like the one below
             # - php7_2
-            # - php7_1
-            # - php5_6
         networks:
             - guki
 
@@ -30,7 +30,7 @@ services:
             - ${MYSQL_DATA_DIR}:/var/lib/mysql:rw
             - ${MYSQL_LOG_DIR}:/var/log/mysql:rw
         ports:
-            - "3307:3306"
+            - "3306:3306"
         depends_on:
             - nginx
         environment:
@@ -53,28 +53,6 @@ services:
         networks:
             - guki
 
-    # php7_2:
-    #     build: 
-    #         context: './builds/php7_2/'
-    #     container_name: guki_php7_2
-    #     volumes:
-    #         - ./code:/var/www/html
-    #     ports:
-    #         - "9001:9001"
-    #     networks:
-    #         - guki
-
-    # php5_6:
-    #     build: 
-    #         context: './builds/php5_6/'
-    #     container_name: guki_php5_6
-    #     volumes:
-    #         - ./code:/var/www/html
-    #     ports:
-    #         - "9002:9002"
-    #     networks:
-    #         - guki
-
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: guki_phpmyadmin
@@ -94,33 +72,3 @@ services:
             - "6379:6379"
         networks:
             - guki
-
-    elasticsearch:
-        image: elasticsearch:7.4.0
-        container_name: guki_elasticsearch
-        environment:
-            ES_JAVA_OPTS: '-Xms512m -Xmx512m'
-            network.bind_host: 0.0.0.0
-            network.host: 0.0.0.0
-            discovery.type: single-node
-        volumes:
-            - ${ELASTICSEARCH_DATA_DIR}:/usr/share/elasticsearch/data:rw
-        ports:
-            - "9200:9200"
-            - "9300:9300"
-        networks:
-            - guki
-
-    # kibana:
-    #     image: kibana:7.4.0
-    #     container_name: guki_kibana
-    #     ports:
-    #         - "5601:5601"
-    #     networks:
-    #         - guki
-
-    # logstash:
-    #     image: logstash:7.4.0
-    #     container_name: guki_logstash
-    #     networks:
-    #         - guki

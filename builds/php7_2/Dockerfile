@@ -1,6 +1,6 @@
 FROM composer:1.8 AS composer
 
-# installing php7.1.x
+# installing php7.3.x
 FROM php:7.2-fpm
 
 # copy the compose file to php
@@ -17,12 +17,13 @@ RUN set -xe; \
     curl \
     libssl-dev \
     libpng-dev \
+    libxslt-dev \
     libjpeg-dev \
     libgmp-dev \
-    libxml2-dev \
     libfreetype6-dev \
     apt-utils \
     zlib1g-dev \
+    libxml2-dev \
     libzip-dev zip unzip && \
     docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install zip && \
@@ -32,9 +33,16 @@ RUN set -xe; \
     docker-php-ext-install gmp && \
     docker-php-ext-install bcmath && \
     docker-php-ext-install soap && \
+    docker-php-ext-install dom && \
+    docker-php-ext-install hash && \
+    docker-php-ext-install iconv && \
     docker-php-ext-install xml && \
+    docker-php-ext-install intl && \
+    docker-php-ext-install xsl && \
+    docker-php-ext-install simplexml && \
     docker-php-ext-install mysqli && \
     docker-php-ext-install pdo && \
+    # docker-php-ext-install openssl && \
     docker-php-ext-install pdo_mysql && \
     docker-php-ext-install ctype && \
     docker-php-ext-install json && \
