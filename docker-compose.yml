@@ -5,6 +5,37 @@ networks:
 
 services:
 
+    php7_2:
+        build: 
+            context: './builds/php7_2/'
+        container_name: guki_php7_2
+        volumes:
+            - ./code:/usr/local/apache2/htdocs
+            - ./configs/php.ini:/usr/local/etc/php/conf.d/local.ini
+        ports:
+            - "9000:900"
+        networks:
+            - guki
+
+    apache:
+        build: 
+            context: './builds/apache/'
+        container_name: guki_apache
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./code:/usr/local/apache2/htdocs
+            - ./configs/vhosts/:/usr/local/apache2/sites-enabled/
+            # certificates
+            - ./configs/certs/:/usr/local/apache2/certs/:ro
+        depends_on:
+            - php7_2
+            # - php7_1
+            # - php5_6
+        networks:
+            - guki
+
     mysql:
         image: mysql:5.7
         container_name: guki_mysql
@@ -20,20 +51,6 @@ services:
             - MYSQL_DATABASE=rkme
             - MYSQL_USER=rkme
             - MYSQL_PASSWORD=Rkme#001
-        networks:
-            - guki
-
-    php7_2:
-        build: 
-            context: './builds/php7_2/'
-        container_name: guki_php7_2
-        volumes:
-            - ./code:/var/www/html/
-            - ./configs/vhosts/:/etc/apache2/sites-enabled/:ro
-            - ./configs/php.ini:/usr/local/etc/php/conf.d/local.ini
-        ports:
-            - "80:80"
-            - "443:443"
         networks:
             - guki
 
