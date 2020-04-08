@@ -1,7 +1,7 @@
 FROM composer:1.8 AS composer
 
 # installing php7.3.x
-FROM php:7.2-fpm
+FROM php:7.2-apache
 
 # copy the compose file to php
 COPY --from=composer /usr/bin/composer /usr/bin/composer

@@ -4,24 +4,6 @@ networks:
     guki:
 
 services:
-    apache:
-        image: bitnami/apache:latest
-        container_name: guki_apache
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes:
-            - ./code:/var/www/html/
-            - ./configs/vhosts/:/etc/apache2/sites-enabled/
-            - ./logs/apache2/:/var/log/apache2
-            # certificates
-            - ./configs/certs/:/etc/apache2/certs/:ro
-        depends_on:
-            - php7_3
-            # you may add more version here like the one below
-            # - php7_2
-        networks:
-            - guki
 
     mysql:
         image: mysql:5.7
@@ -32,7 +14,7 @@ services:
         ports:
             - "3306:3306"
         depends_on:
-            - nginx
+            - php7_2
         environment:
             - MYSQL_ROOT_PASSWORD=Rkme#001
             - MYSQL_DATABASE=rkme
@@ -41,15 +23,17 @@ services:
         networks:
             - guki
 
-    php7_3:
+    php7_2:
         build: 
-            context: './builds/php7_3/'
-        container_name: guki_php7_3
+            context: './builds/php7_2/'
+        container_name: guki_php7_2
         volumes:
-            - ./code:/var/www/html
+            - ./code:/var/www/html/
+            - ./configs/vhosts/:/etc/apache2/sites-enabled/:ro
             - ./configs/php.ini:/usr/local/etc/php/conf.d/local.ini
         ports:
-            - "9000:9000"
+            - "80:80"
+            - "443:443"
         networks:
             - guki
 
@@ -61,7 +45,7 @@ services:
         environment:        
             PMA_ARBITRARY: 1
         depends_on:
-            - mysql
+            - php7_2
         networks:
             - guki
             
