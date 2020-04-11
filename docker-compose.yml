@@ -45,8 +45,9 @@ services:
         ports:
             - "3306:3306"
         depends_on:
-            - php7_2
+            - apache
         environment:
+            # Important note, when you use laravel .env files please make sure to add double quotes in password with special symbols
             - MYSQL_ROOT_PASSWORD=Rkme#001
             - MYSQL_DATABASE=rkme
             - MYSQL_USER=rkme
@@ -62,7 +63,7 @@ services:
         environment:        
             PMA_ARBITRARY: 1
         depends_on:
-            - php7_2
+            - mysql
         networks:
             - guki
             
