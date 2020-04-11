@@ -10,7 +10,7 @@ services:
             context: './builds/php7_2/'
         container_name: guki_php7_2
         volumes:
-            - ./code:/usr/local/apache2/htdocs
+            - ./code:/var/www/html
             - ./configs/php.ini:/usr/local/etc/php/conf.d/local.ini
         ports:
             - "9000:9000"
