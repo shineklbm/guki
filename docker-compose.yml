@@ -1,5 +1,3 @@
-version: '3'
-
 networks:
     guki:
 
@@ -7,113 +5,98 @@ services:
     nginx:
         image: nginx:stable
         container_name: guki_nginx
+        restart: unless-stopped
         ports:
             - "80:80"
             - "443:443"
         volumes:
-            - ./code:/var/www/html/
+            - ./code:/var/www/html
             - ./configs/vhosts/:/etc/nginx/conf.d/
-            # certificates
-            - ./configs/certs/:/etc/nginx/certs/:ro
+            - ./configs/certs/:/etc/nginx/certs/:ro  # Certificates (read-only)
         depends_on:
-            - php7_3
-            # - php7_2
-            # - php7_1
-            # - php5_6
+            - php8_3
         networks:
             - guki
 
     mysql:
-        image: mysql:5.7
+        image: mysql:8.0
         container_name: guki_mysql
-        volumes:
-            - ${MYSQL_DATA_DIR}:/var/lib/mysql:rw
-            - ${MYSQL_LOG_DIR}:/var/log/mysql:rw
+        restart: unless-stopped
         ports:
             - "3307:3306"
-        depends_on:
-            - nginx
+        volumes:
+            - ${MYSQL_DATA_DIR:-./mysql_data}:/var/lib/mysql:rw
+            - ${MYSQL_LOG_DIR:-./mysql_logs}:/var/log/mysql:rw
         environment:
-            - MYSQL_ROOT_PASSWORD=Rkme#001
-            - MYSQL_DATABASE=rkme
-            - MYSQL_USER=rkme
-            - MYSQL_PASSWORD=Rkme#001
+            MYSQL_ROOT_PASSWORD: Rkme#001
+            MYSQL_DATABASE: rkme
+            MYSQL_USER: rkme
+            MYSQL_PASSWORD: Rkme#001
+            MYSQL_ROOT_HOST: "%"  # Allows remote connections
+            MYSQL_PORT: 3306
+            MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+            MYSQL_INITDB_SKIP_TZINFO: "yes"
+            MYSQL_DEFAULT_AUTHENTICATION_PLUGIN: mysql_native_password  # Ensures compatibility with older clients
         networks:
             - guki
 
-    php7_3:
+    php8_3:
         build: 
-            context: './builds/php7_3/'
-        container_name: guki_php7_3
+            context: './builds/php8_3/'
+        container_name: guki_php8_3
+        restart: unless-stopped
+        ports:
+            - "9000:9000"
         volumes:
             - ./code:/var/www/html
             - ./configs/php.ini:/usr/local/etc/php/conf.d/local.ini
-        ports:
-            - "9000:9000"
         networks:
             - guki
 
-    # php7_2:
-    #     build: 
-    #         context: './builds/php7_2/'
-    #     container_name: guki_php7_2
-    #     volumes:
-    #         - ./code:/var/www/html
-    #     ports:
-    #         - "9001:9001"
-    #     networks:
-    #         - guki
-
-    # php5_6:
-    #     build: 
-    #         context: './builds/php5_6/'
-    #     container_name: guki_php5_6
-    #     volumes:
-    #         - ./code:/var/www/html
-    #     ports:
-    #         - "9002:9002"
-    #     networks:
-    #         - guki
-
     phpmyadmin:
-        image: phpmyadmin/phpmyadmin
+        image: phpmyadmin/phpmyadmin:latest
         container_name: guki_phpmyadmin
+        restart: unless-stopped
         ports:
             - "8080:80"
-        environment:        
+        environment:
             PMA_ARBITRARY: 1
+            PMA_HOST: mysql
         depends_on:
             - mysql
         networks:
             - guki
-            
+
     redis:
         image: redis:latest
         container_name: guki_redis
+        restart: unless-stopped
         ports:
             - "6379:6379"
         networks:
             - guki
 
-    elasticsearch:
-        image: elasticsearch:7.4.0
-        container_name: guki_elasticsearch
-        environment:
-            ES_JAVA_OPTS: '-Xms512m -Xmx512m'
-            network.bind_host: 0.0.0.0
-            network.host: 0.0.0.0
-            discovery.type: single-node
-        volumes:
-            - ${ELASTICSEARCH_DATA_DIR}:/usr/share/elasticsearch/data:rw
-        ports:
-            - "9200:9200"
-            - "9300:9300"
-        networks:
-            - guki
+    # Uncomment if needed
+    # elasticsearch:
+    #     image: elasticsearch:7.4.0
+    #     container_name: guki_elasticsearch
+    #     restart: unless-stopped
+    #     environment:
+    #         ES_JAVA_OPTS: '-Xms512m -Xmx512m'
+    #         network.host: 0.0.0.0
+    #         discovery.type: single-node
+    #     volumes:
+    #         - ${ELASTICSEARCH_DATA_DIR:-./elasticsearch_data}:/usr/share/elasticsearch/data:rw
+    #     ports:
+    #         - "9200:9200"
+    #         - "9300:9300"
+    #     networks:
+    #         - guki
 
     # kibana:
     #     image: kibana:7.4.0
     #     container_name: guki_kibana
+    #     restart: unless-stopped
     #     ports:
     #         - "5601:5601"
     #     networks:
@@ -122,5 +105,6 @@ services:
     # logstash:
     #     image: logstash:7.4.0
     #     container_name: guki_logstash
+    #     restart: unless-stopped
     #     networks:
     #         - guki
